@@ -10,6 +10,7 @@ type PokemonContextType = {
   move2: Move | null;
   battleLog: string;
   isLoading: boolean;
+  isFetching: boolean;
   error: string | null;
   startBattle: () => void;
   resetBattle: () => void;
@@ -26,21 +27,29 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
     data: pokemon1,
     isLoading: pokemon1Loading,
     error: pokemon1Error,
-  } = useFetchRandomPokemon();
+    refetch: refetchPokemon1,
+    isFetching: pokemon1Fetching,
+  } = useFetchRandomPokemon("pokemon1");
   const {
     data: pokemon2,
     isLoading: pokemon2Loading,
     error: pokemon2Error,
-  } = useFetchRandomPokemon();
+    refetch: refetchPokemon2,
+    isFetching: pokemon2Fetching,
+  } = useFetchRandomPokemon("pokemon2");
   const {
     data: move1,
     isLoading: move1Loading,
     error: move1Error,
+    refetch: refetchMove1,
+    isFetching: move1Fetching,
   } = useFetchPokemonMove(pokemon1?.moves[0].move.name || "");
   const {
     data: move2,
     isLoading: move2Loading,
     error: move2Error,
+    refetch: refetchMove2,
+    isFetching: move2Fetching,
   } = useFetchPokemonMove(pokemon2?.moves[0].move.name || "");
 
   const startBattle = () => {
@@ -64,8 +73,14 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const resetBattle = () => {
-    setBattleLog("");
+  const resetBattle = async () => {
+    setBattleLog(""); // Clear the battle log
+    await Promise.all([
+      refetchPokemon1(), // Fetch new Pokémon for player 1
+      refetchPokemon2(), // Fetch new Pokémon for player 2
+      refetchMove1(), // Fetch new move for player 1's Pokémon
+      refetchMove2(), // Fetch new move for player 2's Pokémon
+    ]);
   };
 
   return (
@@ -78,6 +93,11 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({
         battleLog,
         isLoading:
           pokemon1Loading || pokemon2Loading || move1Loading || move2Loading,
+        isFetching:
+          pokemon1Fetching ||
+          pokemon2Fetching ||
+          move1Fetching ||
+          move2Fetching,
         error:
           pokemon1Error?.message ||
           pokemon2Error?.message ||
