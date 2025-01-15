@@ -1,4 +1,4 @@
-import { usePokemon } from "../contexts/PokemonContext";
+import { usePokemonBattle } from "../hooks/usePokemonBattle";
 import PokemonCard from "./PokemonCard";
 
 export const BattleView = () => {
@@ -13,7 +13,7 @@ export const BattleView = () => {
     error,
     startBattle,
     resetBattle,
-  } = usePokemon();
+  } = usePokemonBattle();
 
   if (isLoading) {
     return (
