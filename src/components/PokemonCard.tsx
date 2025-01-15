@@ -8,13 +8,14 @@ type PokemonCardProps = {
 };
 
 const PokemonCard = ({ pokemon, move, isBackView }: PokemonCardProps) => {
+  const isFirstPokemon = isBackView;
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-full md:w-64">
       <h2 className="text-2xl font-bold mb-2 capitalize">{pokemon.name}</h2>
       <div className="relative h-48 w-48 mx-auto">
         <img
           src={
-            isBackView
+            isFirstPokemon
               ? pokemon.sprites.back_default
               : pokemon.sprites.front_default
           }

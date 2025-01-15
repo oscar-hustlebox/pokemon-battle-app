@@ -43,7 +43,7 @@ export const BattleView = () => {
           <PokemonCard
             pokemon={pokemon1}
             move={move1 || { name: "", power: 0 }}
-            isBackView={false}
+            isBackView={true}
           />
         )}
         <div className="text-4xl font-bold">VS</div>
@@ -51,7 +51,7 @@ export const BattleView = () => {
           <PokemonCard
             pokemon={pokemon2}
             move={move2 || { name: "", power: 0 }}
-            isBackView={true}
+            isBackView={false}
           />
         )}
       </div>
