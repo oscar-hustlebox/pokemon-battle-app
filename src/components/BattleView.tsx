@@ -15,14 +15,6 @@ export const BattleView = () => {
     resetBattle,
   } = usePokemonBattle();
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-yellow-400"></div>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="text-center text-red-500">

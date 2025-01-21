@@ -7,6 +7,7 @@ import { fetchRandomPokemon } from "../api";
 */
 export const useFetchRandomPokemon = (uniqueKey: string) => {
   return useQuery({
+    enabled: !!uniqueKey, // Only fetch if uniqueKey is provided
     queryKey: ["randomPokemon", uniqueKey],
     queryFn: () => fetchRandomPokemon(),
     refetchOnMount: true,

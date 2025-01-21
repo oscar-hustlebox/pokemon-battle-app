@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { Pokemon, Move } from "../types";
 import { useFetchRandomPokemon } from "./useFetchRandomPokemon";
 import { useFetchPokemonMove } from "./useFetchPokemonMove";
 
+/**
+ * Hook to handle the battle between two random Pokemon.
+ * @returns {Object} - An object containing the battle data and functions to start and reset the battle.
+ */
 export const usePokemonBattle = () => {
   const [battleLog, setBattleLog] = useState<string>("");
 
