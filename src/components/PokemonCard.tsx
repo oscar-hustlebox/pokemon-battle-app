@@ -3,7 +3,7 @@ import { Move, Pokemon } from "../types";
 
 type PokemonCardProps = {
   pokemon: Pokemon | null; // Allow null for loading state
-  move: Move | null; // Allow null for loading state
+  move: Move | null | undefined; // Allow null or undefined for loading state
   isBackView: boolean;
   isLoading: boolean; // Add isLoading prop
 };

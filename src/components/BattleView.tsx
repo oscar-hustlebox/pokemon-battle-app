@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { usePokemonBattle } from "../hooks/usePokemonBattle";
 import PokemonCard from "./PokemonCard";
 
@@ -36,7 +37,7 @@ export const BattleView = () => {
           <div className="transform md:translate-y-8">
             <PokemonCard
               pokemon={pokemon1}
-              move={move1 || { name: "", power: 0 }}
+              move={move1}
               isBackView={true}
               isLoading={isLoading || isFetching}
             />
@@ -49,7 +50,7 @@ export const BattleView = () => {
           <div className="transform md:-translate-y-8">
             <PokemonCard
               pokemon={pokemon2}
-              move={move2 || { name: "", power: 0 }}
+              move={move2}
               isBackView={false}
               isLoading={isLoading || isFetching}
             />

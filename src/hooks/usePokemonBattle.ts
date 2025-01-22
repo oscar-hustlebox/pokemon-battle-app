@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFetchRandomPokemon } from "./useFetchRandomPokemon";
 import { useFetchPokemonMove } from "./useFetchPokemonMove";
 
@@ -31,7 +31,7 @@ export const usePokemonBattle = () => {
     error: move1Error,
     refetch: refetchMove1,
     isFetching: move1Fetching,
-  } = useFetchPokemonMove(pokemon1?.moves[0].move.name || "");
+  } = useFetchPokemonMove(pokemon1?.moves[0].move.name);
 
   const {
     data: move2,
@@ -73,10 +73,10 @@ export const usePokemonBattle = () => {
   };
 
   return {
-    pokemon1: pokemon1 || null,
-    pokemon2: pokemon2 || null,
-    move1: move1 || null,
-    move2: move2 || null,
+    pokemon1,
+    pokemon2,
+    move1,
+    move2,
     battleLog,
     isLoading:
       pokemon1Loading || pokemon2Loading || move1Loading || move2Loading,

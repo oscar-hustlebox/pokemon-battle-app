@@ -5,7 +5,7 @@ import { fetchMove } from "../api";
   Fetches a move from the PokeAPI.
   Returns a Promise that resolves to a Move object.
 */
-export const useFetchPokemonMove = (moveName: string) => {
+export const useFetchPokemonMove = (moveName?: string) => {
   return useQuery({
     enabled: !!moveName,
     queryKey: ["pokemonMove", moveName],
