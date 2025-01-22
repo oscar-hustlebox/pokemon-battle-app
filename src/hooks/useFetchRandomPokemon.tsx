@@ -11,6 +11,7 @@ export const useFetchRandomPokemon = (uniqueKey: string) => {
     queryKey: ["randomPokemon", uniqueKey],
     queryFn: () => fetchRandomPokemon(),
     refetchOnMount: true,
-    staleTime: 0,
+    refetchOnWindowFocus: true,
+    staleTime: Infinity, // Keep data fresh until explicitly refetched
   });
 };
